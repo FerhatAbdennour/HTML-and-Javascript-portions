@@ -1,0 +1,104 @@
+<!DOCTYPE>
+<html>
+<head>
+<style>
+tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+	 thead, tfoot {
+    display: table-header-group;
+}
+	</style>
+	 
+	 <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+	 <link rel="stylesheet" href="css/site-examples.css">
+	
+
+</head>
+<body>
+
+    
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>نتابتمسيب</td>
+                <td>محكمسيىتنى1233</td>
+                <td>نتىسصثبخهتخ</td>
+                <td>61</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+			   <tr>
+                <td>نتابتهحخثصثقنؤى سثبمتم سثبةمحطجفقامسيب</td>
+                <td>محكمسيىتنىيبسثببضشضصث1233</td>
+                <td>نتىسصثئؤءهكحهخحجبخهتخ</td>
+                <td>61</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+			   <tr>
+                <td>نتالاتبتلاتمسيب</td>
+                <td>محكمسيلاتىتنى1233</td>
+                <td>نتىسصاتثبخهتخ</td>
+                <td>61</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+          
+           
+        </tbody>
+    </table>
+	    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		   <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	
+<script>
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#example tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+ 
+    // DataTable
+    var table = $('#example').DataTable();
+ 
+    // Apply the search
+    table.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+} );
+</script>
+
+</body>
+</html>
+
